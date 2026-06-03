@@ -1,0 +1,37 @@
+=== TEST: Multilayer Perceptron con BAAI/bge-large-en-v1.5 su Dataset Bilanciato ===
+Note: Addestramento ibrido (Veri + Sintetici). Test SOLO sui dati reali.
+
+=== STANDARD K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.55      0.53      0.54      1000
+           Directive       0.54      0.55      0.54      1000
+  Emphasize Autonomy       0.42      0.45      0.43       253
+    Give Information       0.48      0.47      0.47      1000
+               Other       0.74      0.72      0.73       805
+            Question       0.91      0.91      0.91      1000
+          Reflection       0.47      0.48      0.48      1000
+       Self-Disclose       0.80      0.82      0.81      1000
+Supportive/Affirming       0.65      0.64      0.64      1000
+
+            accuracy                           0.63      8058
+           macro avg       0.62      0.62      0.62      8058
+        weighted avg       0.63      0.63      0.63      8058
+
+
+=== STRATIFIED K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.55      0.56      0.55      1000
+           Directive       0.54      0.54      0.54      1000
+  Emphasize Autonomy       0.42      0.42      0.42       253
+    Give Information       0.47      0.47      0.47      1000
+               Other       0.75      0.75      0.75       805
+            Question       0.91      0.92      0.92      1000
+          Reflection       0.51      0.47      0.49      1000
+       Self-Disclose       0.81      0.83      0.82      1000
+Supportive/Affirming       0.64      0.66      0.65      1000
+
+            accuracy                           0.64      8058
+           macro avg       0.62      0.62      0.62      8058
+        weighted avg       0.64      0.64      0.64      8058

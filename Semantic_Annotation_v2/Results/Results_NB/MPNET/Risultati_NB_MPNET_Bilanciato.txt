@@ -1,0 +1,37 @@
+=== TEST: Gaussian Naive Bayes con all-mpnet-base-v2 su Dataset Bilanciato ===
+Note: Addestramento ibrido (Veri + Sintetici). Test SOLO sui dati reali.
+
+=== STANDARD K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.43      0.51      0.46      1000
+           Directive       0.42      0.32      0.37      1000
+  Emphasize Autonomy       0.33      0.29      0.31       253
+    Give Information       0.47      0.51      0.49      1000
+               Other       0.64      0.73      0.68       805
+            Question       0.77      0.61      0.68      1000
+          Reflection       0.39      0.44      0.41      1000
+       Self-Disclose       0.59      0.63      0.61      1000
+Supportive/Affirming       0.63      0.57      0.60      1000
+
+            accuracy                           0.53      8058
+           macro avg       0.52      0.51      0.51      8058
+        weighted avg       0.53      0.53      0.53      8058
+
+
+=== STRATIFIED K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.43      0.52      0.47      1000
+           Directive       0.43      0.32      0.36      1000
+  Emphasize Autonomy       0.33      0.30      0.31       253
+    Give Information       0.46      0.51      0.49      1000
+               Other       0.64      0.72      0.68       805
+            Question       0.77      0.60      0.68      1000
+          Reflection       0.39      0.43      0.41      1000
+       Self-Disclose       0.59      0.63      0.60      1000
+Supportive/Affirming       0.63      0.57      0.60      1000
+
+            accuracy                           0.53      8058
+           macro avg       0.52      0.51      0.51      8058
+        weighted avg       0.53      0.53      0.53      8058

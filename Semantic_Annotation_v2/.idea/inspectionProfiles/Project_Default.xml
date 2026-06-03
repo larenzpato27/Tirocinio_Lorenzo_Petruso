@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="torch" />
+          <option value="torchaudio" />
+          <option value="torchvision" />
+          <option value="ScrAIbe" />
+          <option value="jiwer" />
+          <option value="sacrebleu" />
+          <option value="rouge-score" />
+          <option value="mutagen" />
+          <option value="speechbrain" />
+          <option value="pyannote-audio" />
+          <option value="huggingface-hub" />
+          <option value="faster-whisper" />
+          <option value="ctranslate2" />
+          <option value="sentencepiece" />
+          <option value="nltk" />
+          <option value="pandas" />
+          <option value="numpy" />
+          <option value="scipy" />
+          <option value="omegaconf" />
+          <option value="optuna" />
+          <option value="pytorch-lightning" />
+          <option value="pytorch-metric-learning" />
+          <option value="torchmetrics" />
+          <option value="torch-audiomentations" />
+          <option value="torch-pitch-shift" />
+          <option value="matplotlib" />
+          <option value="tqdm" />
+          <option value="google-generativeai" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

@@ -1,0 +1,78 @@
+==================================================
+=== [FASE 1] MLP STANDARD K-FOLD (NO CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.56      0.63      0.60      2769
+           Directive       0.44      0.28      0.34      1329
+  Emphasize Autonomy       0.35      0.12      0.18       253
+    Give Information       0.62      0.73      0.67      4856
+               Other       0.69      0.65      0.67       805
+            Question       0.79      0.80      0.80      1381
+          Reflection       0.43      0.31      0.36      1850
+       Self-Disclose       0.68      0.65      0.67      1390
+Supportive/Affirming       0.68      0.68      0.68      2178
+
+            accuracy                           0.61     16811
+           macro avg       0.58      0.54      0.55     16811
+        weighted avg       0.60      0.61      0.60     16811
+
+
+==================================================
+=== [FASE 2] MLP STRATIFIED K-FOLD (NO CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.57      0.65      0.61      2769
+           Directive       0.46      0.27      0.34      1329
+  Emphasize Autonomy       0.39      0.09      0.14       253
+    Give Information       0.62      0.74      0.67      4856
+               Other       0.68      0.63      0.66       805
+            Question       0.78      0.79      0.78      1381
+          Reflection       0.43      0.32      0.37      1850
+       Self-Disclose       0.69      0.63      0.66      1390
+Supportive/Affirming       0.67      0.69      0.67      2178
+
+            accuracy                           0.61     16811
+           macro avg       0.59      0.53      0.55     16811
+        weighted avg       0.60      0.61      0.60     16811
+
+
+==================================================
+=== [FASE 3] MLP STANDARD K-FOLD (WITH CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.54      0.60      0.57      2769
+           Directive       0.41      0.23      0.30      1329
+  Emphasize Autonomy       0.38      0.08      0.14       253
+    Give Information       0.62      0.72      0.67      4856
+               Other       0.67      0.53      0.60       805
+            Question       0.75      0.76      0.76      1381
+          Reflection       0.37      0.29      0.33      1850
+       Self-Disclose       0.60      0.58      0.59      1390
+Supportive/Affirming       0.57      0.61      0.59      2178
+
+            accuracy                           0.58     16811
+           macro avg       0.54      0.49      0.50     16811
+        weighted avg       0.56      0.58      0.56     16811
+
+
+==================================================
+=== [FASE 4] MLP STRATIFIED K-FOLD (WITH CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.53      0.57      0.55      2769
+           Directive       0.40      0.22      0.29      1329
+  Emphasize Autonomy       0.40      0.06      0.10       253
+    Give Information       0.60      0.74      0.66      4856
+               Other       0.68      0.52      0.59       805
+            Question       0.76      0.73      0.75      1381
+          Reflection       0.37      0.30      0.33      1850
+       Self-Disclose       0.59      0.55      0.57      1390
+Supportive/Affirming       0.55      0.60      0.57      2178
+
+            accuracy                           0.57     16811
+           macro avg       0.54      0.48      0.49     16811
+        weighted avg       0.55      0.57      0.55     16811

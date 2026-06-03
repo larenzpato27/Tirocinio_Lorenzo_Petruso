@@ -1,0 +1,78 @@
+==================================================
+=== [FASE 1] STANDARD K-FOLD REPORT (NO CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.57      0.57      0.57      2769
+           Directive       0.35      0.42      0.38      1329
+  Emphasize Autonomy       0.12      0.44      0.18       253
+    Give Information       0.74      0.53      0.62      4856
+               Other       0.57      0.74      0.64       805
+            Question       0.76      0.82      0.79      1381
+          Reflection       0.38      0.45      0.41      1850
+       Self-Disclose       0.65      0.69      0.67      1390
+Supportive/Affirming       0.71      0.63      0.66      2178
+
+            accuracy                           0.58     16811
+           macro avg       0.54      0.59      0.55     16811
+        weighted avg       0.62      0.58      0.59     16811
+
+
+==================================================
+=== [FASE 2] STRATIFIED K-FOLD REPORT (NO CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.56      0.57      0.56      2769
+           Directive       0.35      0.40      0.38      1329
+  Emphasize Autonomy       0.12      0.44      0.19       253
+    Give Information       0.74      0.53      0.61      4856
+               Other       0.56      0.74      0.64       805
+            Question       0.78      0.81      0.79      1381
+          Reflection       0.37      0.44      0.40      1850
+       Self-Disclose       0.64      0.69      0.66      1390
+Supportive/Affirming       0.70      0.62      0.66      2178
+
+            accuracy                           0.57     16811
+           macro avg       0.54      0.58      0.54     16811
+        weighted avg       0.61      0.57      0.58     16811
+
+
+==================================================
+=== [FASE 3] STANDARD K-FOLD REPORT (WITH CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.55      0.52      0.53      2769
+           Directive       0.29      0.32      0.30      1329
+  Emphasize Autonomy       0.11      0.51      0.19       253
+    Give Information       0.74      0.52      0.61      4856
+               Other       0.46      0.64      0.54       805
+            Question       0.72      0.76      0.74      1381
+          Reflection       0.34      0.37      0.35      1850
+       Self-Disclose       0.51      0.61      0.56      1390
+Supportive/Affirming       0.57      0.51      0.54      2178
+
+            accuracy                           0.52     16811
+           macro avg       0.48      0.53      0.48     16811
+        weighted avg       0.56      0.52      0.53     16811
+
+
+==================================================
+=== [FASE 4] STRATIFIED K-FOLD REPORT (WITH CONTEXT) ===
+==================================================
+                      precision    recall  f1-score   support
+
+              Advise       0.54      0.51      0.53      2769
+           Directive       0.29      0.31      0.30      1329
+  Emphasize Autonomy       0.11      0.48      0.18       253
+    Give Information       0.73      0.52      0.61      4856
+               Other       0.47      0.64      0.54       805
+            Question       0.72      0.76      0.74      1381
+          Reflection       0.33      0.37      0.35      1850
+       Self-Disclose       0.51      0.60      0.55      1390
+Supportive/Affirming       0.58      0.51      0.54      2178
+
+            accuracy                           0.52     16811
+           macro avg       0.48      0.52      0.48     16811
+        weighted avg       0.56      0.52      0.53     16811

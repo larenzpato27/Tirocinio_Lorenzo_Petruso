@@ -1,0 +1,446 @@
+=== BENCHMARK COMPLETO TF-IDF (Tutti i Modelli, 4 Fasi) ===
+
+
+
+############################################################
+### MODELLO: Logistic Regression ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.48      0.50      2769
+           Directive       0.29      0.37      0.32      1329
+  Emphasize Autonomy       0.10      0.31      0.15       253
+    Give Information       0.63      0.39      0.48      4856
+               Other       0.41      0.73      0.53       805
+            Question       0.30      0.36      0.33      1381
+          Reflection       0.34      0.35      0.34      1850
+       Self-Disclose       0.40      0.52      0.45      1390
+Supportive/Affirming       0.63      0.54      0.58      2178
+
+            accuracy                           0.44     16811
+           macro avg       0.40      0.45      0.41     16811
+        weighted avg       0.49      0.44      0.45     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.53      0.48      0.50      2769
+           Directive       0.27      0.35      0.31      1329
+  Emphasize Autonomy       0.09      0.31      0.14       253
+    Give Information       0.62      0.39      0.48      4856
+               Other       0.41      0.73      0.52       805
+            Question       0.30      0.37      0.33      1381
+          Reflection       0.35      0.36      0.35      1850
+       Self-Disclose       0.40      0.51      0.45      1390
+Supportive/Affirming       0.62      0.54      0.58      2178
+
+            accuracy                           0.44     16811
+           macro avg       0.40      0.45      0.41     16811
+        weighted avg       0.49      0.44      0.45     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.47      0.49      2769
+           Directive       0.30      0.39      0.34      1329
+  Emphasize Autonomy       0.10      0.30      0.15       253
+    Give Information       0.62      0.45      0.52      4856
+               Other       0.51      0.65      0.57       805
+            Question       0.31      0.36      0.34      1381
+          Reflection       0.34      0.36      0.35      1850
+       Self-Disclose       0.37      0.49      0.42      1390
+Supportive/Affirming       0.60      0.52      0.56      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.41      0.44      0.42     16811
+        weighted avg       0.49      0.45      0.46     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.53      0.47      0.50      2769
+           Directive       0.28      0.37      0.32      1329
+  Emphasize Autonomy       0.10      0.30      0.15       253
+    Give Information       0.63      0.45      0.52      4856
+               Other       0.51      0.65      0.57       805
+            Question       0.32      0.36      0.34      1381
+          Reflection       0.37      0.40      0.38      1850
+       Self-Disclose       0.37      0.50      0.42      1390
+Supportive/Affirming       0.60      0.53      0.56      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.41      0.45      0.42     16811
+        weighted avg       0.49      0.45      0.47     16811
+
+
+
+############################################################
+### MODELLO: Linear SVM ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.49      0.50      2769
+           Directive       0.31      0.36      0.33      1329
+  Emphasize Autonomy       0.11      0.25      0.15       253
+    Give Information       0.60      0.46      0.52      4856
+               Other       0.46      0.71      0.55       805
+            Question       0.32      0.33      0.32      1381
+          Reflection       0.35      0.34      0.35      1850
+       Self-Disclose       0.44      0.51      0.47      1390
+Supportive/Affirming       0.60      0.60      0.60      2178
+
+            accuracy                           0.47     16811
+           macro avg       0.41      0.45      0.42     16811
+        weighted avg       0.48      0.47      0.47     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.49      0.50      2769
+           Directive       0.31      0.35      0.33      1329
+  Emphasize Autonomy       0.10      0.24      0.14       253
+    Give Information       0.60      0.46      0.52      4856
+               Other       0.45      0.71      0.55       805
+            Question       0.32      0.35      0.33      1381
+          Reflection       0.36      0.36      0.36      1850
+       Self-Disclose       0.43      0.52      0.47      1390
+Supportive/Affirming       0.60      0.60      0.60      2178
+
+            accuracy                           0.47     16811
+           macro avg       0.41      0.45      0.42     16811
+        weighted avg       0.49      0.47      0.47     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.51      0.48      0.49      2769
+           Directive       0.34      0.39      0.36      1329
+  Emphasize Autonomy       0.13      0.23      0.16       253
+    Give Information       0.61      0.50      0.55      4856
+               Other       0.48      0.66      0.56       805
+            Question       0.32      0.34      0.33      1381
+          Reflection       0.37      0.37      0.37      1850
+       Self-Disclose       0.41      0.47      0.44      1390
+Supportive/Affirming       0.58      0.58      0.58      2178
+
+            accuracy                           0.47     16811
+           macro avg       0.42      0.45      0.43     16811
+        weighted avg       0.49      0.47      0.48     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.47      0.50      2769
+           Directive       0.33      0.38      0.35      1329
+  Emphasize Autonomy       0.12      0.24      0.16       253
+    Give Information       0.60      0.49      0.54      4856
+               Other       0.47      0.65      0.55       805
+            Question       0.33      0.36      0.34      1381
+          Reflection       0.38      0.39      0.38      1850
+       Self-Disclose       0.41      0.48      0.44      1390
+Supportive/Affirming       0.59      0.59      0.59      2178
+
+            accuracy                           0.47     16811
+           macro avg       0.42      0.45      0.43     16811
+        weighted avg       0.49      0.47      0.48     16811
+
+
+
+############################################################
+### MODELLO: Random Forest ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.55      0.48      0.52      2769
+           Directive       0.49      0.32      0.39      1329
+  Emphasize Autonomy       0.34      0.15      0.21       253
+    Give Information       0.48      0.72      0.58      4856
+               Other       0.41      0.75      0.53       805
+            Question       0.42      0.29      0.34      1381
+          Reflection       0.57      0.29      0.39      1850
+       Self-Disclose       0.61      0.43      0.50      1390
+Supportive/Affirming       0.67      0.57      0.61      2178
+
+            accuracy                           0.51     16811
+           macro avg       0.50      0.44      0.45     16811
+        weighted avg       0.53      0.51      0.50     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.56      0.49      0.52      2769
+           Directive       0.50      0.31      0.38      1329
+  Emphasize Autonomy       0.34      0.15      0.20       253
+    Give Information       0.48      0.72      0.58      4856
+               Other       0.40      0.74      0.52       805
+            Question       0.42      0.28      0.33      1381
+          Reflection       0.57      0.31      0.40      1850
+       Self-Disclose       0.63      0.44      0.52      1390
+Supportive/Affirming       0.68      0.57      0.62      2178
+
+            accuracy                           0.52     16811
+           macro avg       0.51      0.44      0.45     16811
+        weighted avg       0.53      0.52      0.51     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.59      0.44      0.51      2769
+           Directive       0.60      0.28      0.38      1329
+  Emphasize Autonomy       0.39      0.13      0.20       253
+    Give Information       0.46      0.81      0.58      4856
+               Other       0.56      0.63      0.59       805
+            Question       0.48      0.22      0.30      1381
+          Reflection       0.51      0.34      0.41      1850
+       Self-Disclose       0.69      0.39      0.50      1390
+Supportive/Affirming       0.67      0.56      0.61      2178
+
+            accuracy                           0.52     16811
+           macro avg       0.55      0.42      0.45     16811
+        weighted avg       0.55      0.52      0.50     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.58      0.44      0.50      2769
+           Directive       0.61      0.28      0.39      1329
+  Emphasize Autonomy       0.33      0.12      0.18       253
+    Give Information       0.46      0.81      0.59      4856
+               Other       0.57      0.64      0.60       805
+            Question       0.49      0.22      0.30      1381
+          Reflection       0.50      0.35      0.41      1850
+       Self-Disclose       0.67      0.39      0.50      1390
+Supportive/Affirming       0.68      0.56      0.61      2178
+
+            accuracy                           0.52     16811
+           macro avg       0.54      0.42      0.45     16811
+        weighted avg       0.55      0.52      0.50     16811
+
+
+
+############################################################
+### MODELLO: Gradient Boosting (LGBM) ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.51      0.47      0.49      2769
+           Directive       0.28      0.34      0.31      1329
+  Emphasize Autonomy       0.12      0.24      0.16       253
+    Give Information       0.61      0.38      0.47      4856
+               Other       0.31      0.77      0.44       805
+            Question       0.28      0.34      0.31      1381
+          Reflection       0.33      0.33      0.33      1850
+       Self-Disclose       0.39      0.48      0.43      1390
+Supportive/Affirming       0.58      0.51      0.54      2178
+
+            accuracy                           0.42     16811
+           macro avg       0.38      0.43      0.39     16811
+        weighted avg       0.46      0.42      0.43     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.48      0.50      2769
+           Directive       0.28      0.34      0.31      1329
+  Emphasize Autonomy       0.12      0.24      0.16       253
+    Give Information       0.61      0.38      0.47      4856
+               Other       0.31      0.77      0.44       805
+            Question       0.29      0.34      0.31      1381
+          Reflection       0.34      0.34      0.34      1850
+       Self-Disclose       0.40      0.49      0.44      1390
+Supportive/Affirming       0.58      0.51      0.54      2178
+
+            accuracy                           0.43     16811
+           macro avg       0.38      0.43      0.39     16811
+        weighted avg       0.47      0.43      0.44     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.51      0.48      0.49      2769
+           Directive       0.30      0.37      0.33      1329
+  Emphasize Autonomy       0.12      0.23      0.16       253
+    Give Information       0.60      0.42      0.50      4856
+               Other       0.49      0.62      0.55       805
+            Question       0.27      0.42      0.33      1381
+          Reflection       0.36      0.38      0.37      1850
+       Self-Disclose       0.40      0.47      0.43      1390
+Supportive/Affirming       0.58      0.54      0.56      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.40      0.43      0.41     16811
+        weighted avg       0.48      0.45      0.46     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.52      0.46      0.49      2769
+           Directive       0.29      0.35      0.32      1329
+  Emphasize Autonomy       0.12      0.23      0.16       253
+    Give Information       0.60      0.43      0.50      4856
+               Other       0.48      0.63      0.54       805
+            Question       0.27      0.42      0.33      1381
+          Reflection       0.36      0.39      0.38      1850
+       Self-Disclose       0.39      0.45      0.42      1390
+Supportive/Affirming       0.58      0.55      0.56      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.40      0.43      0.41     16811
+        weighted avg       0.48      0.45      0.46     16811
+
+
+
+############################################################
+### MODELLO: Naive Bayes (Multinomial) ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.49      0.41      0.45      2769
+           Directive       0.62      0.04      0.07      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.38      0.89      0.54      4856
+               Other       0.71      0.30      0.42       805
+            Question       0.62      0.05      0.10      1381
+          Reflection       0.53      0.15      0.23      1850
+       Self-Disclose       0.61      0.19      0.28      1390
+Supportive/Affirming       0.66      0.51      0.57      2178
+
+            accuracy                           0.44     16811
+           macro avg       0.51      0.28      0.29     16811
+        weighted avg       0.52      0.44      0.38     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.49      0.42      0.45      2769
+           Directive       0.56      0.03      0.07      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.38      0.89      0.53      4856
+               Other       0.72      0.30      0.42       805
+            Question       0.63      0.05      0.10      1381
+          Reflection       0.54      0.15      0.23      1850
+       Self-Disclose       0.63      0.19      0.29      1390
+Supportive/Affirming       0.66      0.51      0.58      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.51      0.28      0.30     16811
+        weighted avg       0.52      0.45      0.39     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.50      0.43      0.47      2769
+           Directive       0.59      0.05      0.10      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.41      0.88      0.56      4856
+               Other       0.69      0.25      0.37       805
+            Question       0.61      0.07      0.13      1381
+          Reflection       0.42      0.21      0.28      1850
+       Self-Disclose       0.52      0.21      0.30      1390
+Supportive/Affirming       0.60      0.52      0.56      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.48      0.29      0.31     16811
+        weighted avg       0.50      0.45      0.40     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.49      0.43      0.46      2769
+           Directive       0.54      0.05      0.09      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.41      0.88      0.56      4856
+               Other       0.70      0.26      0.38       805
+            Question       0.59      0.07      0.13      1381
+          Reflection       0.43      0.21      0.28      1850
+       Self-Disclose       0.52      0.21      0.30      1390
+Supportive/Affirming       0.59      0.52      0.55      2178
+
+            accuracy                           0.45     16811
+           macro avg       0.47      0.29      0.30     16811
+        weighted avg       0.49      0.45      0.40     16811
+
+
+
+############################################################
+### MODELLO: MLP (Rete Neurale) ###
+############################################################
+
+=== [FASE 1] STANDARD K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.48      0.54      0.51      2769
+           Directive       0.39      0.26      0.31      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.50      0.65      0.57      4856
+               Other       0.59      0.55      0.57       805
+            Question       0.39      0.26      0.31      1381
+          Reflection       0.37      0.31      0.34      1850
+       Self-Disclose       0.47      0.40      0.43      1390
+Supportive/Affirming       0.61      0.62      0.61      2178
+
+            accuracy                           0.49     16811
+           macro avg       0.42      0.40      0.41     16811
+        weighted avg       0.47      0.49      0.48     16811
+
+=== [FASE 2] STRATIFIED K-FOLD (NO CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.47      0.51      0.49      2769
+           Directive       0.35      0.25      0.29      1329
+  Emphasize Autonomy       1.00      0.00      0.01       253
+    Give Information       0.51      0.65      0.57      4856
+               Other       0.58      0.58      0.58       805
+            Question       0.40      0.26      0.32      1381
+          Reflection       0.37      0.31      0.34      1850
+       Self-Disclose       0.47      0.42      0.44      1390
+Supportive/Affirming       0.60      0.60      0.60      2178
+
+            accuracy                           0.49     16811
+           macro avg       0.53      0.40      0.40     16811
+        weighted avg       0.49      0.49      0.47     16811
+
+=== [FASE 3] STANDARD K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.48      0.52      0.50      2769
+           Directive       0.40      0.23      0.29      1329
+  Emphasize Autonomy       0.00      0.00      0.00       253
+    Give Information       0.51      0.69      0.58      4856
+               Other       0.57      0.54      0.55       805
+            Question       0.40      0.23      0.29      1381
+          Reflection       0.40      0.32      0.35      1850
+       Self-Disclose       0.44      0.37      0.40      1390
+Supportive/Affirming       0.56      0.58      0.57      2178
+
+            accuracy                           0.49     16811
+           macro avg       0.42      0.39      0.39     16811
+        weighted avg       0.47      0.49      0.47     16811
+
+=== [FASE 4] STRATIFIED K-FOLD (WITH CONTEXT) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.49      0.52      0.51      2769
+           Directive       0.37      0.24      0.29      1329
+  Emphasize Autonomy       0.25      0.00      0.01       253
+    Give Information       0.52      0.68      0.59      4856
+               Other       0.58      0.55      0.56       805
+            Question       0.39      0.25      0.31      1381
+          Reflection       0.38      0.32      0.35      1850
+       Self-Disclose       0.46      0.39      0.42      1390
+Supportive/Affirming       0.57      0.58      0.57      2178
+
+            accuracy                           0.49     16811
+           macro avg       0.44      0.39      0.40     16811
+        weighted avg       0.48      0.49      0.48     16811
+

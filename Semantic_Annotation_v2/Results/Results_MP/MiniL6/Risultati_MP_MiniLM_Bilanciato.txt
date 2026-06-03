@@ -1,0 +1,37 @@
+=== TEST: Multilayer Perceptron con all-MiniLM-L6-v2 su Dataset Bilanciato ===
+Note: Addestramento ibrido (Veri + Sintetici). Test SOLO sui dati reali.
+
+=== STANDARD K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.46      0.45      0.45      1000
+           Directive       0.50      0.47      0.48      1000
+  Emphasize Autonomy       0.34      0.41      0.37       253
+    Give Information       0.45      0.46      0.45      1000
+               Other       0.73      0.73      0.73       805
+            Question       0.82      0.82      0.82      1000
+          Reflection       0.43      0.43      0.43      1000
+       Self-Disclose       0.72      0.72      0.72      1000
+Supportive/Affirming       0.61      0.60      0.60      1000
+
+            accuracy                           0.58      8058
+           macro avg       0.56      0.57      0.56      8058
+        weighted avg       0.58      0.58      0.58      8058
+
+
+=== STRATIFIED K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.48      0.46      0.47      1000
+           Directive       0.49      0.48      0.49      1000
+  Emphasize Autonomy       0.33      0.41      0.36       253
+    Give Information       0.45      0.47      0.46      1000
+               Other       0.73      0.72      0.73       805
+            Question       0.82      0.82      0.82      1000
+          Reflection       0.42      0.42      0.42      1000
+       Self-Disclose       0.72      0.71      0.72      1000
+Supportive/Affirming       0.61      0.61      0.61      1000
+
+            accuracy                           0.58      8058
+           macro avg       0.56      0.57      0.56      8058
+        weighted avg       0.58      0.58      0.58      8058

@@ -1,0 +1,37 @@
+=== TEST: HistGradientBoosting con BAAI/bge-large-en-v1.5 su Dataset Bilanciato (Max 1000/classe) ===
+Note: Addestramento ibrido (Veri + Sintetici). Test SOLO sui dati reali.
+
+=== STANDARD K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.54      0.58      0.56      1000
+           Directive       0.54      0.51      0.53      1000
+  Emphasize Autonomy       0.55      0.38      0.45       253
+    Give Information       0.52      0.56      0.54      1000
+               Other       0.80      0.73      0.76       805
+            Question       0.90      0.90      0.90      1000
+          Reflection       0.50      0.53      0.52      1000
+       Self-Disclose       0.84      0.84      0.84      1000
+Supportive/Affirming       0.69      0.68      0.68      1000
+
+            accuracy                           0.66      8058
+           macro avg       0.65      0.63      0.64      8058
+        weighted avg       0.66      0.66      0.66      8058
+
+
+=== STRATIFIED K-FOLD (k=10) ===
+                      precision    recall  f1-score   support
+
+              Advise       0.55      0.60      0.58      1000
+           Directive       0.57      0.54      0.55      1000
+  Emphasize Autonomy       0.57      0.38      0.45       253
+    Give Information       0.51      0.54      0.53      1000
+               Other       0.81      0.74      0.77       805
+            Question       0.90      0.91      0.90      1000
+          Reflection       0.49      0.53      0.51      1000
+       Self-Disclose       0.84      0.84      0.84      1000
+Supportive/Affirming       0.68      0.68      0.68      1000
+
+            accuracy                           0.66      8058
+           macro avg       0.66      0.64      0.65      8058
+        weighted avg       0.66      0.66      0.66      8058
