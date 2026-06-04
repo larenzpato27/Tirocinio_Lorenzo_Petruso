@@ -1,0 +1,19 @@
+============================================================
+RISULTATI VALUTAZIONE CROSS-DATASET (MAPPING MITI -> ANNOMI)
+============================================================
+
+Totale battute valutate: 4247
+Accuracy Globale Sulle Classi in Comune: 0.7092 (70.92%)
+
+REPORT DI CLASSIFICAZIONE DETTAGLIATO:
+                 precision    recall  f1-score   support
+
+          other       0.88      0.88      0.88      1359
+       question       0.77      0.83      0.79      1305
+     reflection       0.71      0.40      0.51      1081
+therapist_input       0.35      0.62      0.45       502
+
+       accuracy                           0.71      4247
+      macro avg       0.68      0.68      0.66      4247
+   weighted avg       0.74      0.71      0.71      4247
+
