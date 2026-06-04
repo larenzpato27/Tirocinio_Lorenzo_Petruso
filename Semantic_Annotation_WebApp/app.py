@@ -100,14 +100,14 @@ def get_client_badge_class(label):
 @st.cache_data
 def load_data():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base_dir, 'Data', 'AnnoMI_Predicted.csv')
+    file_path = os.path.join(base_dir, 'Data', 'AnnoMI_Final.csv')
     df = pd.read_csv(file_path)
     return df
 
 try:
     df = load_data()
 except FileNotFoundError:
-    st.error("Errore: Impossibile trovare 'AnnoMI_Predicted.csv' nella cartella 'Data'.")
+    st.error("Errore: Impossibile trovare 'AnnoMI_Final.csv' nella cartella 'Data'.")
     st.stop()
 
 # --- 4. SIDEBAR (Selezione Dialogo) ---
@@ -116,21 +116,16 @@ video_titles = df['video_title'].unique()
 selected_video = st.sidebar.selectbox("Seleziona una seduta da analizzare:", video_titles)
 dialogue_df = df[df['video_title'] == selected_video].sort_values(by='utterance_id')
 topic = dialogue_df['topic'].iloc[0] if not pd.isna(dialogue_df['topic'].iloc[0]) else None
-quality_raw = dialogue_df['mi_quality'].iloc[0] if not pd.isna(dialogue_df['mi_quality'].iloc[0]) else None
-
-if quality_raw == 'high':
-    quality_ita = "Alta (Buon MI)"
-elif quality_raw == 'low':
-    quality_ita = "Bassa (Cattivo MI)"
-else:
-    quality_ita = "Non valutata"
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Dettagli Seduta")
-if topic:
-    st.sidebar.write(f"📌 **Argomento:** {topic.capitalize()}")
-st.sidebar.write(f"⭐ **Qualità Seduta:** {quality_ita}")
+# Estraiamo i Key Topics generati dall'LLM
+key_topics = dialogue_df['key_topics'].iloc[0] if 'key_topics' in dialogue_df.columns and not pd.isna(dialogue_df['key_topics'].iloc[0]) else None
 
+# Se ci sono, li stampiamo elegantemente
+if key_topics:
+    st.sidebar.markdown("### ⭐ Key Topics (LLM Analysis)")
+    st.sidebar.markdown(key_topics)
 st.sidebar.markdown("---")
 
 # --- 5. schermata principale ---
