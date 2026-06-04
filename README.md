@@ -42,7 +42,8 @@ Tirocinio/
 │
 ├── 📁 Semantic_Annotation_WebApp/   <-- Dashboard interattiva
 │   ├── 📁 Data/                     <-- Dataset con le predizioni finali (es. AnnoMI_Predicted.csv)
-│   ├── 📁 Scripts/                  <-- Script per l'inferenza su nuovi dati (run_inference.py)
+│   ├── 📁 Results/                  <-- Risultati del cross dataset (metriche e matrice di confusione)
+│   ├── 📁 Scripts/                  <-- Script per inferenza e analisi (run_inference.py, cross_dataset_metrics.py, extract_topics.py)
 │   └── 🐍 app.py                    <-- Entry point dell'interfaccia grafica (Streamlit)
 │
 └── 📄 README.md                     <-- Questa documentazione
@@ -83,7 +84,12 @@ python run_inference.py
 ```
 *Questo genererà il file `AnnoMI_Predicted.csv` contenente le predizioni del modello, che verrà salvato nella cartella `Data` della Web App.*
 
-### 2\. Avvio della Dashboard Interattiva
+### 2\. Analisi Cross Dataset e Topic Extraction
+Nella cartella `Scripts` sono presenti ulteriori strumenti di analisi:
+*   `cross_dataset_metrics.py`: Calcola le metriche di valutazione incrociata (cross-dataset) e salva i risultati (file di testo e matrice di confusione) nella cartella `Results`.
+*   `extract_topics.py`: Permette di estrarre e analizzare i topic principali dalle trascrizioni.
+
+### 3\. Avvio della Dashboard Interattiva
 Avviare l'interfaccia grafica per esplorare i risultati:
 ```bash
 cd ../  # Torna nella cartella Semantic_Annotation_WebApp
