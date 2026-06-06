@@ -1,19 +1,21 @@
-============================================================
-RISULTATI VALUTAZIONE CROSS-DATASET (MAPPING MITI -> ANNOMI)
-============================================================
+========================================================================
+RISULTATI VALUTAZIONE CROSS-DATASET (ANNOMI FULL - FINE GRAINED MAPPING)
+========================================================================
 
-Totale battute valutate: 4247
-Accuracy Globale Sulle Classi in Comune: 0.7092 (70.92%)
+Totale valutazioni umane comparate: 5893
+Accuracy Globale Sulle Classi in Comune: 0.6683 (66.83%)
 
-REPORT DI CLASSIFICAZIONE DETTAGLIATO:
-                 precision    recall  f1-score   support
+REPORT DI CLASSIFICAZIONE DETTAGLIATO (SUB-LABELS):
+                  precision    recall  f1-score   support
 
-          other       0.88      0.88      0.88      1359
-       question       0.77      0.83      0.79      1305
-     reflection       0.71      0.40      0.51      1081
-therapist_input       0.35      0.62      0.45       502
+          advise       0.18      0.41      0.25       192
+       directive       0.03      0.11      0.05       138
+give information       0.34      0.32      0.33       476
+           other       0.90      0.87      0.88      1850
+        question       0.78      0.81      0.79      1828
+      reflection       0.68      0.43      0.53      1409
 
-       accuracy                           0.71      4247
-      macro avg       0.68      0.68      0.66      4247
-   weighted avg       0.74      0.71      0.71      4247
+        accuracy                           0.67      5893
+       macro avg       0.49      0.49      0.47      5893
+    weighted avg       0.72      0.67      0.69      5893
 
