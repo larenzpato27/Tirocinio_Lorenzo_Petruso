@@ -18,7 +18,7 @@ def main():
     data_dir = os.path.join(base_dir, 'Data')
 
     train_path = os.path.join(data_dir, 'MI_Dataset_Bilanciato.csv')
-    test_path = os.path.join(data_dir, 'AnnoMI.csv')
+    test_path = os.path.join(data_dir, 'AnnoMI_Full.csv')
     output_path = os.path.join(data_dir, 'AnnoMI_Predicted.csv')
 
     if not os.path.exists(train_path):

@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 
 def main():
     print("=" * 60)
-    print("AVVIO VALUTAZIONE CROSS-DATASET (MAPPING MITI -> ANNOMI)")
+    print("AVVIO VALUTAZIONE CROSS-DATASET (FINE-GRAINED MAPPING)")
     print("=" * 60)
 
     # 1. Gestione percorsi
@@ -33,26 +33,41 @@ def main():
     df_therapist = df[df['main_therapist_behaviour'].notna() & df['miti_prediction'].notna()]
     tot_iniziali = len(df_therapist)
 
-    # 3. Mapping (Dizionario di traduzione aggiornato)
-    print("2/4: Applicazione dell'Allineamento Semantico...")
-    mapping_dict = {
-        'question': 'question',
-        'reflection': 'reflection',
-        'give information': 'therapist_input',
-        'advise': 'therapist_input',
-        'directive': 'therapist_input',
-        'other': 'other'
-    }
+    # 3. Fine-Grained Mapping (Costruzione del Ground Truth Dettagliato)
+    print("2/4: Applicazione dell'Allineamento Semantico Fine-Grained...")
 
-    df_therapist['truth_mapped'] = df_therapist['main_therapist_behaviour'].str.lower()
+    def map_ground_truth(row):
+        main_label = str(row['main_therapist_behaviour']).lower()
+        sub_label = str(row['therapist_input_subtype']).lower()
+
+        # Mapping diretto per le classi semplici
+        if main_label == 'question': return 'question'
+        if main_label == 'reflection': return 'reflection'
+        if main_label == 'other': return 'other'
+
+        # Mapping della macro classe 'therapist_input' usando i sottotipi
+        if main_label == 'therapist_input':
+            if sub_label == 'information': return 'give information'
+            if sub_label == 'advice': return 'advise'
+            if sub_label in ['negotiation', 'options']: return 'directive'
+
+        return 'unmapped'
+
+    # Applichiamo la funzione per creare la vera etichetta umana dettagliata
+    df_therapist['truth_mapped'] = df_therapist.apply(map_ground_truth, axis=1)
     df_therapist['pred_mapped'] = df_therapist['miti_prediction'].str.lower()
-    df_therapist['pred_mapped'] = df_therapist['pred_mapped'].map(mapping_dict)
+
+    # Le 6 classi perfette in comune da confrontare
+    valid_classes = ['question', 'reflection', 'other', 'give information', 'advise', 'directive']
 
     # Filtraggio Classi
-    df_filtered = df_therapist.dropna(subset=['pred_mapped'])
+    df_filtered = df_therapist[
+        df_therapist['truth_mapped'].isin(valid_classes) &
+        df_therapist['pred_mapped'].isin(valid_classes)
+        ]
     tot_filtrati = len(df_filtered)
 
-    print(f"  -> Battute analizzate: {tot_filtrati} (Scartate {tot_iniziali - tot_filtrati} non in comune)")
+    print(f"  -> Valutazioni analizzate: {tot_filtrati} (Scartate {tot_iniziali - tot_filtrati} fuori mapping)")
 
     # 4. Calcolo metriche
     print("3/4: Calcolo delle metriche di classificazione...")
@@ -69,12 +84,12 @@ def main():
     print(f"4/4: Salvataggio dei risultati nella cartella {results_dir}...")
 
     report_text = (
-        "============================================================\n"
-        "RISULTATI VALUTAZIONE CROSS-DATASET (MAPPING MITI -> ANNOMI)\n"
-        "============================================================\n\n"
-        f"Totale battute valutate: {tot_filtrati}\n"
+        "========================================================================\n"
+        "RISULTATI VALUTAZIONE CROSS-DATASET (ANNOMI FULL - FINE GRAINED MAPPING)\n"
+        "========================================================================\n\n"
+        f"Totale valutazioni umane comparate: {tot_filtrati}\n"
         f"Accuracy Globale Sulle Classi in Comune: {accuracy:.4f} ({accuracy * 100:.2f}%)\n\n"
-        "REPORT DI CLASSIFICAZIONE DETTAGLIATO:\n"
+        "REPORT DI CLASSIFICAZIONE DETTAGLIATO (SUB-LABELS):\n"
         f"{report}\n"
     )
 
@@ -82,11 +97,13 @@ def main():
     with open(txt_path, 'w') as f:
         f.write(report_text)
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 8))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=labels, yticklabels=labels)
-    plt.title('Matrice di Confusione (Cross-Dataset)')
-    plt.ylabel('Etichetta Reale (AnnoMI)')
-    plt.xlabel('Etichetta Predetta (BGE-Large Mapped)')
+    plt.title('Matrice di Confusione (Cross-Dataset Fine-Grained)')
+    plt.ylabel('Etichetta Reale Umana (AnnoMI Sub-Labels)')
+    plt.xlabel('Etichetta Predetta dal Modello (MITI)')
+    plt.xticks(rotation=45, ha='right')
+    plt.yticks(rotation=0)
     plt.tight_layout()
 
     cm_path = os.path.join(results_dir, 'confusion_matrix.png')

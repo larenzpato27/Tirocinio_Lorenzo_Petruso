@@ -55,12 +55,15 @@ def main():
     # 4. Ciclo di elaborazione
     for video in tqdm(videos_to_process, desc="Elaborazione Video"):
 
-        # Estraiamo le battute
-        dialogue_df = df[df['video_title'] == video].sort_values(by='utterance_id')
+        # Estraiamo le battute del video
+        dialogue_df = df[df['video_title'] == video]
 
-        # Costruiamo il transcript
+        # Teniamo solo una riga per ogni utterance_id per creare un dialogo pulito
+        unique_dialogue_df = dialogue_df.drop_duplicates(subset=['utterance_id']).sort_values(by='utterance_id')
+
+        # Costruiamo il transcript pulito
         transcript = ""
-        for _, row in dialogue_df.iterrows():
+        for _, row in unique_dialogue_df.iterrows():
             speaker = str(row['interlocutor']).upper()
             text = str(row['utterance_text'])
             transcript += f"{speaker}: {text}\n"
@@ -80,13 +83,13 @@ def main():
         try:
             response = client.models.generate_content(
                 # Seleziona il modello di Gemini che vuoi utilizzare: es. gemini-2.5-flash, gemini-3.5-flash...
-                model='XXXXXXXX',
+                model='gemini-3.1-flash-lite',
                 contents=prompt
             )
             extracted_topics = response.text.strip()
 
             # 5. Salvataggio Immediato (Checkpoint)
-            # Aggiorniamo tutte le righe che corrispondono a questo video
+            # Applicando questo a df, copiamo i topics in TUTTE le righe dei vari annotatori per quel video
             df.loc[df['video_title'] == video, 'key_topics'] = extracted_topics
 
             # Salviamo su disco IMMEDIATAMENTE dopo ogni video

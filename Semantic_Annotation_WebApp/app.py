@@ -73,6 +73,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
 # Funzione colori Terapeuta
 def get_badge_class(label):
     if pd.isna(label): return "badge-other"
@@ -87,6 +88,7 @@ def get_badge_class(label):
     if "disclose" in label: return "badge-selfdisclose"
     return "badge-other"
 
+
 # Funzione colori Paziente
 def get_client_badge_class(label):
     if pd.isna(label): return "badge-other"
@@ -96,13 +98,19 @@ def get_client_badge_class(label):
     if "neutral" in label: return "badge-neutral"
     return "badge-other"
 
+
 # --- 3. Caricamento dati ---
 @st.cache_data
 def load_data():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, 'Data', 'AnnoMI_Final.csv')
     df = pd.read_csv(file_path)
+
+    # Teniamo una sola riga per ogni 'utterance_id' così la chat non fa l'eco.
+    df = df.drop_duplicates(subset=['video_title', 'utterance_id'])
+
     return df
+
 
 try:
     df = load_data()
@@ -114,27 +122,31 @@ except FileNotFoundError:
 st.sidebar.title("Navigazione Sedute")
 video_titles = df['video_title'].unique()
 selected_video = st.sidebar.selectbox("Seleziona una seduta da analizzare:", video_titles)
+
+# Filtriamo i dati solo per il video selezionato
 dialogue_df = df[df['video_title'] == selected_video].sort_values(by='utterance_id')
+
+# Estraiamo le informazioni generali della seduta
 topic = dialogue_df['topic'].iloc[0] if not pd.isna(dialogue_df['topic'].iloc[0]) else None
+key_topics = dialogue_df['key_topics'].iloc[0] if 'key_topics' in dialogue_df.columns and not pd.isna(
+    dialogue_df['key_topics'].iloc[0]) else None
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Dettagli Seduta")
-# Estraiamo i Key Topics generati dall'LLM
-key_topics = dialogue_df['key_topics'].iloc[0] if 'key_topics' in dialogue_df.columns and not pd.isna(dialogue_df['key_topics'].iloc[0]) else None
 
-# Se ci sono, li stampiamo elegantemente
+# Stampiamo i Key Topics di Gemini (se esistono)
 if key_topics:
     st.sidebar.markdown("### ⭐ Key Topics (LLM Analysis)")
     st.sidebar.markdown(key_topics)
 st.sidebar.markdown("---")
 
-# --- 5. schermata principale ---
+# --- 5. SCHERMATA PRINCIPALE ---
 st.title(f"Seduta: {selected_video}")
 st.markdown("Analisi semantica e comportamentale generata tramite **BGE-Large + Gradient Boosting**.")
 
 tab1, tab2 = st.tabs(["💬 Trascrizione Seduta", "📊 Dashboard Analitica"])
 
-# Tab 1: la chat
+# Tab 1: La Chat
 with tab1:
     st.markdown("### Dialogo Paziente - Terapeuta")
 
@@ -166,6 +178,7 @@ with tab1:
         elif speaker == 'therapist':
             miti_label = row['miti_prediction']
             badge_css = get_badge_class(miti_label)
+
             st.markdown(f"""
             <div class="chat-row row-therapist">
                 <div style="display:flex; flex-direction:column; align-items:flex-end; max-width:75%;">
@@ -178,7 +191,7 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
 
-# Tab 2: la dashboard
+# Tab 2: La Dashboard
 with tab2:
     st.markdown("### Metriche della Seduta")
 
