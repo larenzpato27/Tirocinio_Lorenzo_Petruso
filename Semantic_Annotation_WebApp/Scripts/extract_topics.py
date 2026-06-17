@@ -70,11 +70,14 @@ def main():
 
         prompt = f"""
         Sei un assistente esperto in psicologia clinica. Leggi la seguente trascrizione di una seduta psicologica (Intervista Motivazionale).
-        Estrai dai 2 ai 5 "Key Topics" (i temi chiave o gli argomenti principali) discussi dal paziente e dal terapeuta nel dialogo.
+        Estrai dai 2 ai 5 "Key Topics" (i temi chiave o gli argomenti principali) espressi ESCLUSIVAMENTE dal cliente/paziente nel dialogo. Non includere concetti introdotti dal terapeuta.
 
         REGOLE FONDAMENTALI:
-        1. Sii conciso (massimo 5-6 parole per topic).
-        2. Restituisci SOLO un elenco puntato usando il simbolo '-', nessuna frase introduttiva o conclusiva.
+        1. Lingua: i topic devono essere scritti ESCLUSIVAMENTE in INGLESE.
+        2. Focus sul cliente: basati solo ed esclusivamente sui problemi, pensieri o vissuti raccontati dal cliente.
+        3. Semplicità: usa termini comuni e concetti basilari, evitando frasi complicate o troppo cliniche.
+        4. Concisione: sii molto breve (massimo 3-4 parole per topic).
+        5. Formato: restituisci SOLO un elenco puntato usando il simbolo '-', nessuna frase introduttiva o conclusiva.
 
         TRASCRIZIONE:
         {transcript}
@@ -83,7 +86,7 @@ def main():
         try:
             response = client.models.generate_content(
                 # Seleziona il modello di Gemini che vuoi utilizzare: es. gemini-2.5-flash, gemini-3.5-flash...
-                model='gemini-3.1-flash-lite',
+                model='XXXXXXXXXX',
                 contents=prompt
             )
             extracted_topics = response.text.strip()
