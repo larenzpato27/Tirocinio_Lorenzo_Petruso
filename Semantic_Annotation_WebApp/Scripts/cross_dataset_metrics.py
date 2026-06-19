@@ -98,7 +98,7 @@ def main():
         f.write(report_text)
 
     plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=labels, yticklabels=labels)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Greens', xticklabels=labels, yticklabels=labels)
     plt.title('Matrice di Confusione (Cross-Dataset Fine-Grained)')
     plt.ylabel('Etichetta Reale Umana (AnnoMI Sub-Labels)')
     plt.xlabel('Etichetta Predetta dal Modello (MITI)')
