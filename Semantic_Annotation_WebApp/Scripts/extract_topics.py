@@ -15,7 +15,7 @@ client = genai.Client(api_key=API_KEY)
 
 def main():
     print("=" * 60)
-    print("AVVIO ESTRAZIONE KEY TOPICS TRAMITE GEMINI API")
+    print("STARTING KEY TOPICS EXTRACTION VIA GEMINI API")
     print("=" * 60)
 
     # 2. Gestione percorsi
@@ -25,18 +25,18 @@ def main():
     output_path = os.path.join(base_dir, 'Data', 'AnnoMI_Final.csv')
 
     if not os.path.exists(input_path):
-        print(f"ERRORE: Non trovo il file originale in {input_path}")
+        print(f"ERROR: Cannot find the original file at {input_path}")
         return
 
     # 3. Caricamento dataset e Checkpoint
-    print("\n1/4: Controllo salvataggi precedenti...")
+    print("\n1/4: Checking for previous saves...")
 
     # Se esiste già il file finale, partiamo da quello per non perdere il lavoro fatto
     if os.path.exists(output_path):
-        print("  -> Trovato un salvataggio parziale! Riprendo da dove ci eravamo fermati.")
+        print("  -> Partial save found! Resuming from where we left off.")
         df = pd.read_csv(output_path)
     else:
-        print("  -> Nessun salvataggio trovato. Parto da zero.")
+        print("  -> No previous save found. Starting from scratch.")
         df = pd.read_csv(input_path)
         # Creiamo la colonna vuota se non esiste
         if 'key_topics' not in df.columns:
@@ -47,13 +47,13 @@ def main():
     videos_to_process = [v for v in video_titles if pd.isna(df.loc[df['video_title'] == v, 'key_topics'].iloc[0])]
 
     if len(videos_to_process) == 0:
-        print("\nTUTTI I VIDEO SONO GIA' STATI ELABORATI! Nessuna azione necessaria.")
+        print("\nALL VIDEOS HAVE ALREADY BEEN PROCESSED! No action required.")
         return
 
-    print(f"\n2/4: Inizio elaborazione di {len(videos_to_process)} dialoghi rimanenti...")
+    print(f"\n2/4: Starting processing of {len(videos_to_process)} remaining dialogues...")
 
     # 4. Ciclo di elaborazione
-    for video in tqdm(videos_to_process, desc="Elaborazione Video"):
+    for video in tqdm(videos_to_process, desc="Processing Video"):
 
         # Estraiamo le battute del video
         dialogue_df = df[df['video_title'] == video]
@@ -99,7 +99,7 @@ def main():
             df.to_csv(output_path, index=False)
 
         except Exception as e:
-            print(f"\nErrore sul video {video}: {e}")
+            print(f"\nError on video {video}: {e}")
             # In caso di errore API, ci fermiamo così puoi riavviare pulito
             break
 
@@ -107,7 +107,7 @@ def main():
         time.sleep(8)
 
     print("\n" + "=" * 60)
-    print(f"FATTO! Il file aggiornato è disponibile in:\n{output_path}")
+    print(f"DONE! The updated file is available at:\n{output_path}")
     print("=" * 60)
 
 

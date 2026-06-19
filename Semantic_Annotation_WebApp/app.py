@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import os
+import re
 
 # --- 1. configurazione pagina ---
 st.set_page_config(
@@ -115,13 +116,13 @@ def load_data():
 try:
     df = load_data()
 except FileNotFoundError:
-    st.error("Errore: Impossibile trovare 'AnnoMI_Final.csv' nella cartella 'Data'.")
+    st.error("Error: Cannot find 'AnnoMI_Final.csv' in the 'Data' folder.")
     st.stop()
 
 # --- 4. SIDEBAR (Selezione Dialogo) ---
-st.sidebar.title("Navigazione Sedute")
+st.sidebar.title("Session Navigation")
 video_titles = df['video_title'].unique()
-selected_video = st.sidebar.selectbox("Seleziona una seduta da analizzare:", video_titles)
+selected_video = st.sidebar.selectbox("Select a session to analyze:", video_titles)
 
 # Filtriamo i dati solo per il video selezionato
 dialogue_df = df[df['video_title'] == selected_video].sort_values(by='utterance_id')
@@ -132,23 +133,24 @@ key_topics = dialogue_df['key_topics'].iloc[0] if 'key_topics' in dialogue_df.co
     dialogue_df['key_topics'].iloc[0]) else None
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### Dettagli Seduta")
+st.sidebar.markdown("### Session Details")
 
 # Stampiamo i Key Topics di Gemini (se esistono)
 if key_topics:
+    key_topics = re.sub(r'\n(?!\s*-)', ' ', key_topics)
     st.sidebar.markdown("### ⭐ Key Topics (LLM Analysis)")
-    st.sidebar.markdown(key_topics)
+    st.sidebar.markdown(f'<div style="font-size: 0.9em;">\n\n{key_topics}\n</div>', unsafe_allow_html=True)
 st.sidebar.markdown("---")
 
 # --- 5. SCHERMATA PRINCIPALE ---
-st.title(f"Seduta: {selected_video}")
-st.markdown("Analisi semantica e comportamentale generata tramite **BGE-Large + Gradient Boosting**.")
+st.title(f"Session: {selected_video}")
+st.markdown("Semantic and behavioral analysis generated via **BGE-Large + Gradient Boosting**.")
 
-tab1, tab2 = st.tabs(["💬 Trascrizione Seduta", "📊 Dashboard Analitica"])
+tab1, tab2 = st.tabs(["💬 Session Transcript", "📊 Analytical Dashboard"])
 
 # Tab 1: La Chat
 with tab1:
-    st.markdown("### Dialogo Paziente - Terapeuta")
+    st.markdown("### Patient - Therapist Dialogue")
 
     for _, row in dialogue_df.iterrows():
         speaker = row['interlocutor']
@@ -193,28 +195,28 @@ with tab1:
 
 # Tab 2: La Dashboard
 with tab2:
-    st.markdown("### Metriche della Seduta")
+    st.markdown("### Session Metrics")
 
     col1, col2, col3 = st.columns(3)
     total_utterances = len(dialogue_df)
     therapist_count = len(dialogue_df[dialogue_df['interlocutor'] == 'therapist'])
     client_count = len(dialogue_df[dialogue_df['interlocutor'] == 'client'])
-    col1.metric("Totale Battute", total_utterances)
-    col2.metric("Interventi Terapeuta", therapist_count)
-    col3.metric("Interventi Paziente", client_count)
+    col1.metric("Total Utterances", total_utterances)
+    col2.metric("Therapist Interventions", therapist_count)
+    col3.metric("Patient Interventions", client_count)
 
     st.markdown("---")
     col_chart1, col_chart2 = st.columns(2)
 
     with col_chart1:
-        st.markdown("#### Comportamenti del Terapeuta (AI Predicted)")
+        st.markdown("#### Therapist Behaviors (AI Predicted)")
         therapist_df = dialogue_df[dialogue_df['interlocutor'] == 'therapist']
 
         if not therapist_df.empty:
             pie_data = therapist_df['miti_prediction'].value_counts().reset_index()
-            pie_data.columns = ['Etichetta MITI', 'Conteggio']
+            pie_data.columns = ['MITI Label', 'Count']
 
-            fig_pie = px.pie(pie_data, values='Conteggio', names='Etichetta MITI',
+            fig_pie = px.pie(pie_data, values='Count', names='MITI Label',
                              hole=0.4, color_discrete_sequence=px.colors.qualitative.Pastel)
             fig_pie.update_traces(textposition='inside', textinfo='percent+label')
 
@@ -230,22 +232,22 @@ with tab2:
             )
             st.plotly_chart(fig_pie, use_container_width=True)
         else:
-            st.info("Nessun dato del terapeuta in questa seduta.")
+            st.info("No therapist data available for this session.")
 
     with col_chart2:
-        st.markdown("#### Tipo di Risposta del Paziente")
+        st.markdown("#### Patient Response Type")
         client_df = dialogue_df[dialogue_df['interlocutor'] == 'client']
 
         if not client_df.empty and 'client_talk_type' in client_df.columns:
             client_types = client_df['client_talk_type'].dropna()
             if not client_types.empty:
                 bar_data = client_types.value_counts().reset_index()
-                bar_data.columns = ['Tipo di Talk', 'Conteggio']
+                bar_data.columns = ['Talk Type', 'Count']
 
-                fig_bar = px.bar(bar_data, x='Tipo di Talk', y='Conteggio',
-                                 color='Tipo di Talk', text='Conteggio',
+                fig_bar = px.bar(bar_data, x='Talk Type', y='Count',
+                                 color='Talk Type', text='Count',
                                  color_discrete_sequence=px.colors.qualitative.Set2)
                 fig_bar.update_layout(showlegend=False)
                 st.plotly_chart(fig_bar, use_container_width=True)
             else:
-                st.info("Non ci sono etichette disponibili per il paziente in questo dialogo.")
+                st.info("No patient labels available for this dialogue.")
